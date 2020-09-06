@@ -1,8 +1,26 @@
-﻿
-@{
-    ViewData["Title"] = "Details";
-}
+﻿@model SEDC.PizzaApp.Models.ViewModels.PizzaViewModel
 
-<h2>Details</h2>
-<h3>Pizza Details Page</h3>
+<partial name="~/Views/Shared/Partials/_PizzaGreeting.cshtml" />
+
+<h1>@ViewData["Title"] </h1>
+
+    @if (ViewBag.Pizza.IsOnPromotion)
+    {
+        <h3>@ViewBag.Pizza.PizzaName</h3>
+        <p> @ViewBag.Pizza.Price</p>
+        <p> @ViewBag.Pizza.PizzaSize</p>
+        <br />
+
+        <h3 style="color:tomato">This Pizza is on promotion</h3>
+    }
+    else 
+    { 
+        <h3>@ViewBag.Pizza.PizzaName</h3>
+        <p> @ViewBag.Pizza.Price</p>
+        <p> @ViewBag.Pizza.PizzaSize</p>
+        <br />
+    }
+
+
+
 

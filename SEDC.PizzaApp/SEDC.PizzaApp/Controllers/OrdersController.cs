@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SEDC.PizzaApp.Models;
+using SEDC.PizzaApp.Models.Domain;
+using SEDC.PizzaApp.Models.Mappers;
+using SEDC.PizzaApp.Models.ViewModels;
 
 namespace SEDC.PizzaApp.Controllers
 {
@@ -11,32 +13,45 @@ namespace SEDC.PizzaApp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            List<Order> orders = StaticDb.Orders;
+            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
+            foreach (Order order in orders)
+            {
+                orderViewModels.Add(OrderMapper.OrderToViewModel(order));
+            }
+            return View(orderViewModels);
         }
 
         public IActionResult Details(int? id)
         {
-            if(id != null)
+            if(id == null)
             {
-                Order order = OrdersDb.Orders.FirstOrDefault(o => o.Id == id);
-                return View(order);
+                
+                return View("PageNotFound");
             }
-            else
+
+            Order order = StaticDb.Orders.FirstOrDefault(o => o.Id == id);
+            if (order == null)
             {
-                return new EmptyResult();
+                return View("PageNotFound");
             }
+
+            OrderViewModel orderViewModel = OrderMapper.OrderToDetailsViewModel(order);
+
+            return View(orderViewModel);
+           
         }
 
-        public IActionResult JsonData()
-        {
-            Order order = OrdersDb.Orders[0];
+        //public IActionResult JsonData()
+        //{
+        //    Order order = StaticDb.Orders[0];
 
-            return new JsonResult(order);
-        }
+        //    return new JsonResult(order);
+        //}
 
-        public IActionResult Redirect()
-        {
-            return RedirectToAction("Index", "Home");
-        }
+        //public IActionResult Redirect()
+        //{
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

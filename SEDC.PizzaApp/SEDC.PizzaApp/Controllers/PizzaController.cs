@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SEDC.PizzaApp.Models;
+using SEDC.PizzaApp.Models.Domain;
+using SEDC.PizzaApp.Models.Mappers;
+using SEDC.PizzaApp.Models.ViewModels;
 
 namespace SEDC.PizzaApp.Controllers
 {
@@ -11,18 +13,38 @@ namespace SEDC.PizzaApp.Controllers
     {
         public IActionResult Index()
         {
-            var pizzas = StaticDb.Pizzas;
-            return View(pizzas);
+            ViewData["Title"] = "Pizzas List";
+
+            List<Pizza> pizzas = StaticDb.Pizzas;
+            List<PizzaViewModel> pizzaViewModels = new List<PizzaViewModel>();
+            foreach(Pizza pizza in pizzas)
+            {
+                pizzaViewModels.Add(PizzaMapper.PizzaToViewModel(pizza));
+            };
+            return View(pizzaViewModels);
         }
 
         public IActionResult Details(int? id)
         {
-            if (id != null)
+            ViewData["Title"] = "Pizza Details";
+
+            ViewBag.Pizza = StaticDb.Pizzas.FirstOrDefault(p => p.Id == id);
+            if (id == null)
             {
-                return View();
+                return new EmptyResult();
             }
-            return new EmptyResult();
+
+            //Pizza pizza = StaticDb.Pizzas.FirstOrDefault(p => p.Id == id);
+            //if (pizza == null)
+            //{
+            //    return new EmptyResult();
+            //}
+
+            //PizzaViewModel pizzaViewModel = PizzaMapper.PizzaToViewModel(pizza);
+
+            return View();
         }
+        
         [HttpGet("SeePizzas")]
         public IActionResult Redirect()
         {

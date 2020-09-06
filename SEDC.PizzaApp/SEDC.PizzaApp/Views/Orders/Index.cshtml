@@ -1,9 +1,13 @@
-﻿<h2>Orders</h2>
+﻿@model List<OrderViewModel>
+
+<h2>Orders</h2>
 
 <ol>
-    <li>Pizza</li>
-    <li>Pizza</li>
-    <li>Pizza</li>
-    <li>Pizza</li>
-    <li>Pizza</li>
+   @foreach(var order in Model)
+   {
+    <li>
+        Pizza Name: @order.PizzaName || Price: @order.Price
+        <p><a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id">More Info</a></p>
+    </li>
+   }
 </ol>

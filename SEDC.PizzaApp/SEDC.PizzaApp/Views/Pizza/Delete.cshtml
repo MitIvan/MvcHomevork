@@ -1,4 +1,4 @@
-﻿@model SEDC.PizzaApp.Models.Pizza
+﻿@model SEDC.PizzaApp.Models.Domain.Pizza
 
 @{
     ViewData["Title"] = "Delete";
@@ -18,10 +18,10 @@
             @Html.DisplayFor(model => model.Id)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.PizzaName)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.PizzaName)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.IsOnPromotion)

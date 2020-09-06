@@ -1,6 +1,7 @@
-﻿@model Order
+﻿@model SEDC.PizzaApp.Models.ViewModels.OrderViewModel
 
 <h2>Details</h2>
 
-<p>You ordered: @Model.PizzaType </p>
+<p>@Model.FullName ordered: @Model.PizzaName </p>
 <p>Price: @Model.Price </p>
+<p>To be delivered to: @Model.Address </p>
