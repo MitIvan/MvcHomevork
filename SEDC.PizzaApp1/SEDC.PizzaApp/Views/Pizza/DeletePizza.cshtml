@@ -1,0 +1,9 @@
+﻿@model PizzaViewModel
+
+<h2 style="color : red">Are You Sure You Want To Delete This Item</h2>
+
+
+<form asp-action="DeletePizzaPost">
+    <input type="hidden" asp-for="Id"/>
+    <button type="submit" class="btn btn-danger"> Delete</button>
+</form>

@@ -1,0 +1,27 @@
+﻿@model User
+
+<h1>Add User</h1>
+
+<div class="row">
+    <div class="col-md-3">
+        <form asp-action="AddUserPost" method="post">
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PremiumUser" class="control-label"></label>
+                <input type="checkbox" asp-for="PremiumUser" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-default">Add</button>
+        </form>
+    </div>
+</div>

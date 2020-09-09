@@ -1,0 +1,27 @@
+﻿@model PizzaViewModel
+
+<h1>Create Pizza</h1>
+
+<div class="row">
+    <div class="col-md-3">
+        <form asp-action="CreatePizzaPost" method="post">
+            <div class="form-group">
+                <label asp-for="PizzaName" class="control-label"></label>
+                <input asp-for="PizzaName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="pizzaSize" class="control-label"></label>
+                <select asp-for="pizzaSize" asp-items="Html.GetEnumSelectList<SEDC.PizzaApp.Models.Enums.PizzaSize>()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="HasExtras" class="control-label"></label>
+                <input type="checkbox" asp-for="HasExtras" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-default">Create</button>
+        </form>
+    </div>
+</div>
