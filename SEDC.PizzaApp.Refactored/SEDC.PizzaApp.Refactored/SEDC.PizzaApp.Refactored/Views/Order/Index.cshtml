@@ -1,0 +1,24 @@
+﻿@model List<OrderDetailsViewModel>
+
+
+<h2>List of orders:</h2>
+
+    @foreach (var order in @Model)
+    {
+        <ul>
+            <li>Price: @order.Price</li>
+            <li>Payment Method: @order.PaymentMethod</li>
+            <li>Pizza Store: @order.PizzaStore</li>
+            <li>User: @order.UserFullName</li>
+            <ol>
+
+                @foreach (var pizzaName in order.PizzaNames)
+                {
+                    <li>@pizzaName</li>
+                }
+            </ol>
+        </ul>
+        <hr /> 
+
+    }
+
