@@ -74,5 +74,54 @@ namespace SEDC.PizzaApp.Services.Implementations
                 throw new Exception("Something went wrong while saving the feedback");
             }
         }
+
+        public FeedbackDetailsViewModel GetFeedbackForEditing(int id)
+        {
+            Feedback feedback = _feedbackRepository.GetById(id);
+            if(feedback == null)
+            {
+                throw new Exception($"The feedback with id {id} was not found!");
+            }
+
+            return feedback.toFeedBackDetailsViewModel();
+        }
+
+        public void EditFeedback(FeedbackDetailsViewModel feedbackDetailsViewModel)
+        {
+            Feedback feedback = _feedbackRepository.GetById(feedbackDetailsViewModel.Id);
+            if (feedback == null)
+            {
+                
+                throw new Exception($"The feedback with id {feedbackDetailsViewModel.Id} was not found!");
+            }
+
+            Feedback editedFeedback = feedbackDetailsViewModel.ToFeedback();
+            _feedbackRepository.Update(editedFeedback);
+        }
+
+        public FeedbackDetailsViewModel GetFeedbackById(int id)
+        {
+            Feedback feedback = _feedbackRepository.GetById(id);
+            if (feedback == null)
+            {
+                
+                throw new Exception($"Order with id {id} does not exist!");
+            }
+
+            return feedback.toFeedBackDetailsViewModel();
+        }
+
+        public void DeleteFeedback(int id)
+        {
+            try
+            {
+                _feedbackRepository.DeleteById(id);
+            }
+            catch
+            {
+                
+                throw; 
+            }
+        }
     }
 }

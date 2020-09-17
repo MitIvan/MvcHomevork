@@ -9,6 +9,10 @@ namespace SEDC.PizzaApp.Services.Interfaces
     {
         List<FeedbackDetailsViewModel> GetAllFeebacks();
         void CreateFeedback(FeedbackDetailsViewModel feedbackDetailsViewModel);
+        FeedbackDetailsViewModel GetFeedbackForEditing(int id);
+        void EditFeedback(FeedbackDetailsViewModel feedbackDetailsViewModel);
+        FeedbackDetailsViewModel GetFeedbackById(int id);
+        void DeleteFeedback(int id);
 
     }
 }
