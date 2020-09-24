@@ -46,6 +46,7 @@ namespace SEDC.PizzaApp.Refactored
             //Presentation Layer must not reference Data Access Layer
            // services.AddTransient<IRepository<Order>, OrderRepository>();
            InjectionHelper.InjectRepositories(services);
+            InjectionHelper.InjectDbContext(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
